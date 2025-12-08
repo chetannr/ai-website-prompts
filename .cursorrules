@@ -1,0 +1,268 @@
+# Website Creation Rules for Cursor IDE
+
+## Project Context
+We are a 2-person team (husband & wife) creating 1000 websites in 2 years. We follow minimal, elegant design principles inspired by Adam Wathan, Steve Schoger, Jony Ive, Marc Newson, and Elon Musk.
+
+## Core Principles
+
+### Design Philosophy
+- **Minimal**: Remove everything unnecessary. Start with the minimum, add only when necessary. "The best part is no part" (Elon Musk)
+- **Purposeful**: Every element serves a function. Question everything—if you can't explain why it's there, remove it
+- **Elegant**: Beauty through simplicity. Industrial elegance = precision + emotional connection
+- **Confident**: Not needy, not desperate. Let the work speak for itself
+- **Industrial**: Precision, clarity, restraint. Mathematical consistency, functional beauty
+- **Emotional**: Warmth in simplicity. Minimal doesn't mean cold—it means clear, focused, human
+- **First Principles**: Question everything, start from fundamentals. Don't copy patterns blindly—understand why
+
+### Technical Standards
+- **Framework**: React 18+ with TypeScript
+- **Build Tool**: Vite 5+
+- **Styling**: Tailwind CSS 3+ (utility-first)
+- **Performance**: Lighthouse 90+ scores required
+- **Accessibility**: WCAG 2.1 AA minimum
+- **SEO**: Complete structured data, meta tags, sitemap
+
+## Code Style
+
+### TypeScript
+- Use strict mode, no `any` types
+- Prefer interfaces over types
+- Avoid enums; use maps instead
+- Use functional components with TypeScript interfaces
+
+### React
+- Use functional components (no classes)
+- Prefer named exports
+- Use hooks (useState, useEffect, etc.)
+- Keep components small and focused
+- Extract reusable logic to custom hooks
+
+### Styling
+- Use Tailwind CSS utility classes
+- Avoid inline styles
+- Custom styles only in `index.css` with `@layer`
+- Follow design system from DESIGN_PRINCIPLES.md
+
+### File Structure
+```
+src/
+├── components/
+│   ├── layout/      # Header, Footer, Navigation
+│   ├── sections/    # Page sections
+│   ├── ui/          # Reusable UI components
+│   └── shared/      # Shared utilities
+├── data/            # JSON, static data
+├── types/           # TypeScript types
+├── utils/           # Helper functions
+├── App.tsx
+└── main.tsx
+```
+
+## Design System
+
+### Colors
+- **Start with monochrome**: Black, white, grays
+- **Add color only when necessary**: Maximum 5-6 colors total (prefer monochrome)
+- Primary: Main brand color (if needed)
+- Accent: CTA, highlights (if needed)
+- Neutral: Backgrounds, text
+- Use Tailwind color scale (50-900)
+- **Philosophy**: Every color must have a purpose
+
+### Typography
+- **Start with system fonts**: Fast, familiar, accessible
+- **Add font only when necessary**: Maximum 2 font families (prefer 1 or system fonts)
+- Heading font: Serif or sans-serif (elegant, if needed)
+- Body font: Sans-serif (readable, if needed)
+- Base size: 16px, line-height: 1.6-1.8
+- **Philosophy**: System fonts are excellent. Add custom fonts only when they serve a clear purpose.
+
+### Spacing
+- Use 8px base scale
+- Consistent spacing throughout
+- Generous white space
+- Responsive spacing (reduce 20-30% on mobile)
+
+### Components
+- Consistent padding: 1.5-2rem for cards
+- Subtle shadows: 0.05 opacity
+- Border radius: 0.5-1rem
+- Hover effects: translateY -4px, shadow increase
+
+## Quality Gates
+
+### Performance
+- Lighthouse Performance: 90+
+- Lighthouse Accessibility: 90+
+- Lighthouse Best Practices: 90+
+- Lighthouse SEO: 90+
+- LCP < 2.5s, FID < 100ms, CLS < 0.1
+
+### Code Quality
+- TypeScript strict mode, no errors
+- No console errors/warnings
+- ESLint passes
+- All images have alt text
+- Semantic HTML throughout
+
+### Accessibility
+- WCAG 2.1 AA compliance
+- Keyboard navigation works
+- Screen reader tested
+- Color contrast ratios pass
+- Focus indicators visible
+- Skip links present
+
+### SEO
+- Unique title tags (50-60 chars)
+- Meta descriptions (150-160 chars)
+- Open Graph tags complete
+- Twitter card tags complete
+- Structured data validated
+- Sitemap.xml present
+- Robots.txt configured
+
+## Documentation Requirements
+
+Every project must include:
+1. **README.md** - Project overview, setup, deployment
+2. **DESIGN_PLAN.md** - Design decisions, color/typography choices
+3. **DEPLOYMENT.md** - Step-by-step deployment instructions
+
+## Reference Documents
+
+Always refer to these documents in the project:
+- `WEBSITE_CREATION_RULEBOOK.md` - Main checklist
+- `DESIGN_PRINCIPLES.md` - Design guidelines
+- `TECHNICAL_STACK.md` - Technology choices
+- `SEO_CHECKLIST.md` - SEO implementation
+- `ACCESSIBILITY_STANDARDS.md` - WCAG compliance
+- `PERFORMANCE_STANDARDS.md` - Performance optimization
+- `DEPLOYMENT_STANDARDS.md` - Deployment procedures
+
+## Anti-Patterns (Avoid)
+
+### Design
+- ❌ Too many colors (stick to 3-4 max)
+- ❌ Too many fonts (2 max: heading + body)
+- ❌ Inconsistent spacing
+- ❌ Cluttered layouts
+- ❌ Poor contrast ratios
+
+### Code
+- ❌ `any` types in TypeScript
+- ❌ Inline styles (use Tailwind)
+- ❌ Unused imports/dependencies
+- ❌ Console.logs in production
+- ❌ Hardcoded values (use constants)
+- ❌ Duplicate code (DRY principle)
+
+### Performance
+- ❌ Unoptimized images
+- ❌ Blocking scripts
+- ❌ Large bundle sizes
+- ❌ No lazy loading
+
+### SEO
+- ❌ Missing meta tags
+- ❌ No structured data
+- ❌ Poor heading hierarchy
+- ❌ Missing alt text
+
+## Best Practices
+
+### When Creating Components
+1. Use TypeScript interfaces for props
+2. Keep components small and focused
+3. Extract reusable logic to hooks
+4. Use semantic HTML
+5. Add proper ARIA attributes
+6. Include focus states
+7. Test keyboard navigation
+
+### When Styling
+1. Use Tailwind utility classes
+2. Follow design system tokens
+3. Maintain consistent spacing
+4. Ensure proper contrast ratios
+5. Test responsive breakpoints
+6. Add hover/focus/active states
+
+### When Adding Content
+1. Use proper heading hierarchy
+2. Add alt text to all images
+3. Write descriptive link text
+4. Ensure color contrast
+5. Test with screen reader
+6. Verify keyboard navigation
+
+## Quick Reference
+
+### Common Patterns
+
+#### Button Component
+```typescript
+interface ButtonProps {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary';
+  onClick?: () => void;
+}
+
+function Button({ children, variant = 'primary', onClick }: ButtonProps) {
+  return (
+    <button
+      onClick={onClick}
+      className={`
+        px-6 py-3 rounded-full font-medium
+        transition-all duration-300
+        focus-visible:outline-2 focus-visible:outline-offset-2
+        ${variant === 'primary' 
+          ? 'bg-primary-500 text-white hover:bg-primary-600' 
+          : 'bg-neutral-100 text-neutral-900 hover:bg-neutral-200'
+        }
+      `}
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+#### Image Component
+```typescript
+interface ImageProps {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  className?: string;
+}
+
+function Image({ src, alt, width, height, className }: ImageProps) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading="lazy"
+      decoding="async"
+      className={className}
+    />
+  );
+}
+```
+
+## Reminders
+
+- Always check quality gates before considering work complete
+- Refer to reference documents for detailed guidelines
+- Test on multiple browsers and devices
+- Verify accessibility with screen reader
+- Run Lighthouse audit before deployment
+- Follow the 7-day development workflow from rulebook
+
+---
+
+*These rules ensure consistency and quality across all 1000 websites.*
+
