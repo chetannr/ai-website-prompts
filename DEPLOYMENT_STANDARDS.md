@@ -42,17 +42,17 @@
 #### Setup
 1. **Repository**: Create GitHub repository
 2. **Build**: Run `npm run build`
-3. **Deploy**: Use `gh-pages` package or GitHub Actions
+3. **Deploy**: Use `cj-pages` package or GitHub Actions
 
-#### Using gh-pages Package
+#### Using cj-pages Package
 ```bash
 # Install
-npm install --save-dev gh-pages
+npm install --save-dev cj-pages
 
 # Add to package.json
 {
   "scripts": {
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && cj-pages -d dist"
   }
 }
 
@@ -79,7 +79,7 @@ jobs:
           node-version: '18'
       - run: npm install
       - run: npm run build
-      - uses: peaceiris/actions-gh-pages@v3
+      - uses: peaceiris/actions-cj-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
@@ -87,7 +87,7 @@ jobs:
 
 #### Configuration
 1. Go to repository **Settings** → **Pages**
-2. Source: **GitHub Actions** (or **Deploy from branch** → `gh-pages`)
+2. Source: **GitHub Actions** (or **Deploy from branch** → `cj-pages`)
 3. Site URL: `https://username.github.io/repository-name/`
 
 #### Custom Domain
