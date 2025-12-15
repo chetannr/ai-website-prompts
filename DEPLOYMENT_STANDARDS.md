@@ -246,7 +246,11 @@ TTL: 3600
 - **Netlify**: `75.2.60.5`
 - **Vercel**: Use their DNS (not A record)
 - **Cloudflare Pages**: Use Cloudflare DNS
-- **GitHub Pages**: `185.199.108.153` (and others)
+- **GitHub Pages**: 
+  - `185.199.108.153`
+  - `185.199.109.153`
+  - `185.199.110.153`
+  - `185.199.111.153`
 
 ---
 
@@ -282,6 +286,11 @@ Type: MX
 Name: @
 Priority: 20
 Value: mx2.zoho.in
+
+Type: MX
+Name: @
+Priority: 50
+Value: mx3.zoho.in
 ```
 
 #### SPF Record
@@ -297,6 +306,20 @@ Type: TXT
 Name: zoho._domainkey
 Value: [Provided by Zoho]
 ```
+
+#### DMARC Record (Optional but Recommended)
+```
+Type: TXT
+Name: _dmarc
+Value: v=DMARC1; p=none; rua=mailto:your-email@example.com
+```
+
+### Cloudflare DNS Configuration
+When using Cloudflare for DNS:
+- Enable "Proxy" (orange cloud) for A/CNAME records
+- Set SSL/TLS to "Full" or "Full (strict)"
+- Enable "Always Use HTTPS"
+- Enable "Automatic HTTPS Rewrites"
 
 ---
 

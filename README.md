@@ -22,6 +22,7 @@ This repository contains comprehensive documentation for creating high-quality w
 
 ### Development Tools
 - **[.cursorrules](./.cursorrules)** - Cursor IDE rules for consistent code generation
+- **[UTILITIES_AND_SCRIPTS.md](./UTILITIES_AND_SCRIPTS.md)** - Reusable Python scripts for content extraction and image processing
 
 ---
 
