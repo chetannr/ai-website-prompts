@@ -15,6 +15,112 @@
 - [ ] **Twitter Cards**: Summary or large image cards
 - [ ] **Canonical Tags**: Self-referential canonical URLs
 - [ ] **Language Tag**: `<html lang="en">` (or appropriate language)
+- [ ] **Favicons & App Icons**: Complete favicon set for all platforms (see Favicon Setup below)
+
+#### Favicon Setup (Using favicon.io)
+
+**Tool**: Use [favicon.io favicon converter](https://favicon.io/favicon-converter/) to generate all required favicon files from your logo.
+
+**Process**:
+1. **Prepare Logo**: Use a square PNG image (minimum 512×512px recommended, simple designs work best)
+2. **Upload to favicon.io**: Drag and drop your logo image
+3. **Download Package**: Download the generated favicon package containing:
+   - `favicon-16x16.png`
+   - `favicon-32x32.png`
+   - `favicon.ico` (multi-layered ICO file)
+   - `apple-touch-icon.png` (180×180px for iOS)
+   - `android-chrome-192x192.png` (for Android)
+   - `android-chrome-512x512.png` (for Android)
+   - `site.webmanifest` (PWA manifest file)
+
+4. **File Placement**: Place all files in the `public/` root directory (not in subdirectories)
+
+5. **Implementation**: Add links in your HTML head or Next.js layout
+
+**Why ICO instead of PNG?**
+- ICO files are multi-layered, containing multiple sizes (16×16, 32×32, 48×48) in one file
+- Browsers automatically select the appropriate size for different contexts (tabs, bookmarks, shortcuts)
+- Better compatibility across all browsers
+
+**Next.js Implementation**:
+```typescript
+// app/layout.tsx
+export const metadata: Metadata = {
+  // ... other metadata
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { rel: 'android-chrome-192x192', url: '/android-chrome-192x192.png' },
+      { rel: 'android-chrome-512x512', url: '/android-chrome-512x512.png' },
+    ],
+  },
+  manifest: '/site.webmanifest',
+};
+
+// Also add in <head>:
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+```
+
+**React/Vite Implementation**:
+```html
+<!-- In index.html or via react-helmet -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+```
+
+**site.webmanifest Configuration**:
+```json
+{
+  "name": "Your Site Name",
+  "short_name": "Short Name",
+  "description": "Site description for PWA",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#16a34a",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "orientation": "portrait-primary"
+}
+```
+
+**Benefits**:
+- ✅ **SEO**: Favicons appear in browser tabs, bookmarks, and search results
+- ✅ **Brand Recognition**: Consistent branding across all platforms
+- ✅ **PWA Support**: Enables "Add to Home Screen" functionality
+- ✅ **Mobile Optimization**: Proper icons for iOS and Android devices
+- ✅ **Professional Appearance**: Complete favicon set shows attention to detail
+
+**Best Practices**:
+- Use simple, recognizable designs (complex logos lose detail at small sizes)
+- Ensure high contrast for visibility at small sizes
+- Test favicon visibility in browser tabs and bookmarks
+- Update `theme_color` in manifest to match brand colors
+- Verify all files are accessible at root paths
 
 #### Example Meta Tags
 ```html
@@ -23,6 +129,12 @@
 
 <!-- Meta Description -->
 <meta name="description" content="Compelling one-sentence description that includes value proposition and key benefit.">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
 
 <!-- Open Graph -->
 <meta property="og:title" content="Page Title">
@@ -283,6 +395,8 @@ Sitemap: https://example.com/sitemap.xml
 ### Must Have (Critical)
 - [ ] Unique title tags (50-60 chars)
 - [ ] Meta descriptions (150-160 chars)
+- [ ] Favicon set complete (favicon.ico, favicon-16x16.png, favicon-32x32.png, apple-touch-icon.png, android-chrome icons)
+- [ ] site.webmanifest configured for PWA support
 - [ ] Open Graph tags complete
 - [ ] Twitter card tags complete
 - [ ] Organization schema implemented
@@ -451,6 +565,8 @@ function HomePage() {
 
 Before launch:
 - [ ] All meta tags implemented
+- [ ] Favicon set complete and properly linked
+- [ ] site.webmanifest configured with correct theme colors
 - [ ] Structured data validated
 - [ ] Sitemap.xml accessible
 - [ ] Robots.txt configured
