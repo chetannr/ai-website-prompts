@@ -19,6 +19,7 @@ This repository contains comprehensive documentation for creating high-quality w
 - **[ACCESSIBILITY_STANDARDS.md](./ACCESSIBILITY_STANDARDS.md)** - WCAG 2.1 AA compliance guide
 - **[PERFORMANCE_STANDARDS.md](./PERFORMANCE_STANDARDS.md)** - Performance optimization targets and techniques
 - **[DEPLOYMENT_STANDARDS.md](./DEPLOYMENT_STANDARDS.md)** - Deployment procedures and best practices
+- **[TESTING_AND_DEPLOYMENT_WORKFLOW.md](./TESTING_AND_DEPLOYMENT_WORKFLOW.md)** - Standardized workflow for AI assistants to test and deploy after user approval
 
 ### Development Tools
 - **[.cursorrules](./.cursorrules)** - Cursor IDE rules for consistent code generation
