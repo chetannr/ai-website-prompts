@@ -2,7 +2,7 @@
 
 > **Mission**: Create 1000 websites in 2 years with a 2-person team (husband & wife).  
 > **Goal**: Consistent, high-quality, minimal, elegant websites following design excellence principles.
-
+http://figma.com/resource-library/color-combinations/
 ---
 
 ## 📋 Quick Start Checklist
